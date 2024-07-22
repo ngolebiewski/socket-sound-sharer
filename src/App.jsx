@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Howl } from 'howler'
+import { socket } from './socket';
 
 const dirtySample = '/sound/DirtySweptA1.wav'
 const stringSample = '/sound/MoogStringC2.wav'
@@ -9,11 +10,19 @@ const sounds = {
   stringMoog: new Howl({ src: [stringSample], volume: 1 / 3 }),
 };
 
-function App() {
+const App = () => {
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    })
+  }, []);
+
   const playSound = (sampleKey) => {
     sounds[sampleKey].play();
     console.log(`${sampleKey} played`)
   }
+  
   return (
     <>
       <h1>Socket Sound Scape Sharer</h1>
