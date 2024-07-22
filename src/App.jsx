@@ -12,17 +12,24 @@ const sounds = {
 
 const App = () => {
 
+  const playSound = (sampleKey) => {
+    sounds[sampleKey].play();
+    socket.emit('playSound', sampleKey)
+    console.log(`SENT: ${sampleKey} played and emitted to io Server`)
+  }
+  
   useEffect(() => {
     socket.on('connect', () => {
       console.log('Connected to server');
     })
+
+    socket.on('emitSound', (sampleKey) => {
+      sounds[sampleKey].play();
+      console.log(`RECEIVED: ${sampleKey} from io server`);
+    });
   }, []);
 
-  const playSound = (sampleKey) => {
-    sounds[sampleKey].play();
-    console.log(`${sampleKey} played`)
-  }
-  
+
   return (
     <>
       <h1>Socket Sound Scape Sharer</h1>
