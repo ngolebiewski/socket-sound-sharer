@@ -37,6 +37,7 @@ const App = () => {
     })
 
     socket.on('emitSound', (sampleKey) => {
+      sounds[sampleKey].stereo(randomStereoPan())
       sounds[sampleKey].play();
       console.log(`RECEIVED: ${sampleKey} from io server`);
     });
