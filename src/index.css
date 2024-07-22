@@ -1,0 +1,14 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: Futura, Helvetica, sans-serif;
+}
+
+* {  font-family: Futura, Helvetica, sans-serif;
+}
+
+button {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+}
