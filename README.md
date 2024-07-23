@@ -12,6 +12,7 @@ Basic implementation of Socket.io in Vite with React to lay the foundation for m
 # Tech
 - socket.io for the websockets/live collaboration
 - Howler.js for the audio library
+- p5.js for visuals
 - React
 - Vite (dev environment/package up react jsx components)
 - Node (server side code)

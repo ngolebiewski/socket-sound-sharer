@@ -34,17 +34,45 @@
   font-style: normal;
 }
 
-body {
-  background-color: black;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   color: white;
+
   font-family: "Space Mono", monospace;
+}
+
+.app-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.p5-sketch-container {
+  position: fixed; /* Use fixed to keep it in place */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place the canvas behind other content */
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Ensure content is above the canvas */
+  padding: 20px;
+  color: white; /* Optional: make text visible against the canvas */
 }
 
 h1 {
   font-family: "Silkscreen", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 2.5em
+  font-size: 2.5em;
 }
 
 button {

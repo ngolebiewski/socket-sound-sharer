@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Howl } from 'howler'
 import { socket } from './socket';
 import SilentModeDetector from './SilentModeDetector';
+import P5SketchComponent from './P5SketchComponent';
 
 const loonSample = '/sound/Loon_robertcrosley.wav'
 
@@ -51,18 +52,21 @@ const App = () => {
 
 
   return (
-    <>
-      <h1>Sonic Soundscaper</h1>
-      {Object.keys(sounds).map(sample => (
-        <button key={sample} onClick={() => playSound(sample)}>{sample}</button>
-      ))}
-      <footer>First iteration of a collaborative soundscape app.
-        When you play a sound, it activates that sound for all online at that moment in time.
-        Right now Moog and outdoors field-recording samples.
-        Make some noise (Turn silent-mode off!)
-        By: Nick Golebiewski | Source Code: <a href="https://github.com/ngolebiewski/socket-sound-sharer" target='_blank'>Github Repo</a></footer>
+    <div className="app-container">
+      <P5SketchComponent />
+      <div className="content">
+        <h1>Sonic Soundscaper</h1>
+        {Object.keys(sounds).map(sample => (
+          <button key={sample} onClick={() => playSound(sample)}>{sample}</button>
+        ))}
+        <footer>First iteration of a collaborative soundscape app.
+          When you play a sound, it activates that sound for all online at that moment in time.
+          Right now Moog and outdoors field-recording samples.
+          Make some noise (Turn silent-mode off!)
+          By: Nick Golebiewski | Source Code: <a href="https://github.com/ngolebiewski/socket-sound-sharer" target='_blank'>Github Repo</a></footer>
+      </div>
       <SilentModeDetector />
-    </>
+    </div>
   )
 }
 
