@@ -1,12 +1,16 @@
 // Sketch.js
-import p5 from 'p5';
+// Claude and ChatGPT greatly assisted in the production of this module
+
+import p5 from "p5";
+import { socket } from "./socket";
 
 let vertices = [];
 let edges = [];
 let currentLine = [];
+let magentaLines = []; // New array for magenta lines
 let angleX = 0;
 let angleY = 0;
-let zoom = 800; // Initial zoom level
+let zoom = 1800; // Initial zoom level
 let lastMouseX = 0;
 let lastMouseY = 0;
 let isDragging = false;
@@ -17,11 +21,17 @@ const generatePolyhedron = (p) => {
   // Generate random vertices for the polyhedron
   for (let i = 0; i < 30; i++) {
     vertices.push({
-      x: p.random(-300, 300),
-      y: p.random(-300, 300),
-      z: p.random(-300, 300),
+      x: p.random(-600, 600),
+      y: p.random(-600, 600),
+      z: p.random(-600, 600),
     });
   }
+};
+
+const addMagentaLine = () => {
+  const start = vertices[Math.floor(Math.random() * vertices.length)];
+  const end = vertices[Math.floor(Math.random() * vertices.length)];
+  magentaLines.push([start, end]);
 };
 
 const Sketch = (p) => {
@@ -29,6 +39,11 @@ const Sketch = (p) => {
     p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
     p.noFill();
     generatePolyhedron(p);
+
+    // Set up socket listener
+    socket.on("emitSound", () => {
+      addMagentaLine();
+    });
   };
 
   p.draw = () => {
@@ -41,16 +56,24 @@ const Sketch = (p) => {
     p.rotateX(angleX);
     p.rotateY(angleY);
 
-    // Draw edges
+    // Draw green edges
+    p.stroke(50, 255, 50);
     for (const [start, end] of edges) {
       p.line(start.x, start.y, start.z, end.x, end.y, end.z);
     }
 
+    // Draw magenta lines
+    p.stroke(255, 0, 255);
+    for (const [start, end] of magentaLines) {
+      p.line(start.x, start.y, start.z, end.x, end.y, end.z);
+    }
+
     // Draw vertices
+    p.stroke(50, 255, 50);
     for (const vertex of vertices) {
       p.push();
       p.translate(vertex.x, vertex.y, vertex.z);
-      p.sphere(2); // Draw a small sphere at each vertex
+      p.sphere(2);
       p.pop();
     }
   };

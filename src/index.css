@@ -34,15 +34,15 @@
   font-style: normal;
 }
 
-
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
   color: white;
-  
+
   font-family: "Space Mono", monospace;
 }
 
@@ -68,16 +68,11 @@ body, html {
   color: white; /* Optional: make text visible against the canvas */
 }
 
-
-
-
-
-
 h1 {
   font-family: "Silkscreen", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 2.5em
+  font-size: 2.5em;
 }
 
 button {
