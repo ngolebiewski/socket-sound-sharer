@@ -16,6 +16,8 @@ const sounds = {
   loon: new Howl({ src: [loonSample], volume: 1 / 3 }),
   AmericanGoldfinch: new Howl({ src: ['/sound/AmericanGoldfinch.mp3'], volume: 1 / 3 }),
   fire: new Howl({ src: ['/sound/fire.wav'], volume: 1 / 3 }),
+  rain: new Howl({ src: ['/sound/rain.mp3'], volume: 1 / 3 }),
+  thunder: new Howl({ src: ['/sound/peals-of-thunder.mp3'], volume: 1 / 3 }),
 };
 
 const randomStereoPan = () => {
