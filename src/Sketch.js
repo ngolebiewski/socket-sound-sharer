@@ -112,6 +112,30 @@ const Sketch = (p) => {
     zoom = p.constrain(zoom, 10, 4000);
   };
 
+// Add touch event handlers
+p.touchStarted = () => {
+  isDragging = true;
+  lastMouseX = p.touches[0].x;
+  lastMouseY = p.touches[0].y;
+};
+
+p.touchMoved = () => {
+  if (isDragging) {
+    const dx = p.touches[0].x - lastMouseX;
+    const dy = p.touches[0].y - lastMouseY;
+    angleY += dx * 0.01;
+    angleX += dy * 0.01;
+    lastMouseX = p.touches[0].x;
+    lastMouseY = p.touches[0].y;
+  }
+  return false; // prevent default
+};
+
+p.touchEnded = () => {
+  isDragging = false;
+};
+
+
   p.windowResized = () => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
   };
