@@ -117,6 +117,13 @@ p.touchStarted = () => {
   isDragging = true;
   lastMouseX = p.touches[0].x;
   lastMouseY = p.touches[0].y;
+  if (currentLine.length === 0) {
+    currentLine.push(vertices[Math.floor(p.random(vertices.length))]);
+  } else {
+    const newVertex = vertices[Math.floor(p.random(vertices.length))];
+    edges.push([currentLine[currentLine.length - 1], newVertex]);
+    currentLine.push(newVertex);
+  }
 };
 
 p.touchMoved = () => {
