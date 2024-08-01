@@ -36,6 +36,10 @@ const App = () => {
     console.log(`SENT: ${sampleKey} played and emitted to io Server`)
   }
 
+  const handleStop = () => {
+    Howler.stop();
+  };
+
   useEffect(() => {
     socket.on('connect', () => {
       console.log('Connected to server');
@@ -61,7 +65,9 @@ const App = () => {
         <h1>Sonic Soundscaper</h1>
         {Object.keys(sounds).map(sample => (
           <button key={sample} onClick={() => playSound(sample)}>{sample}</button>
-        ))}
+        ))}  
+        <button class="stop" onClick={handleStop}>STOP</button>
+      
         <Footer />
       </div>
       <SilentModeDetector />

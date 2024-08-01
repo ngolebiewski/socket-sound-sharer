@@ -89,6 +89,7 @@ footer {
   width: 100%;
   display: flex;
   flex-direction: row;
+  
 }
 
 footer button {
@@ -104,4 +105,8 @@ footer a:hover,
 footer a:focus,
 footer a:active {
   color: #ffffff;
+}
+
+.stop{
+  color: red;
 }
